@@ -1,6 +1,5 @@
 import os
 from os.path import exists, join, basename, splitext
-import moviepy.editor as mp
 
 git_repo_url = 'https://github.com/CMU-Perceptual-Computing-Lab/openpose.git'
 project_name = splitext(basename(git_repo_url))[0]

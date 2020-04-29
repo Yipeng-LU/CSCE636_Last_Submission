@@ -59,7 +59,7 @@ def predAndPlot(root):
         inp[i,j,:]=ls2
       else:
         inp[i,j,:]=[0]*50
-  model=load_model('/content/drive/My Drive/new_model20.h5')
+  model=load_model('/content/new_model20.h5')
   result=model.predict(inp)
   x=[]
   data=[]
@@ -68,7 +68,7 @@ def predAndPlot(root):
     data.append([2*(i+1),str(result[i][0])])
   jsontext = {'stretch body':data}
   jsondata = json.dumps(jsontext)
-  f = open('829009541.json'.format(name), 'w')
+  f = open('/content/829009541.json'.format(name), 'w')
   f.write(jsondata)
   f.close()
   if len(names)==1:
@@ -81,6 +81,6 @@ def predAndPlot(root):
   plt.ylabel('prob of stretching body')
   plt.title('prediction for every 2s')
   plt.legend()
-  plt.savefig('829009541.jpg')
+  plt.savefig('/content/829009541.jpg')
   plt.show()
 

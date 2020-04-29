@@ -42,7 +42,7 @@ names=os.listdir(root2)
 names.sort()
 inp=np.ndarray((len(names),20,50), dtype='float32')
 for i,v in enumerate(names):
-  !mkdir '/content/temp/frameFor_{v}/'
+  os.mkdir('/content/temp/frameFor_{}/'.format(v))
   !cd openpose &&./build/examples/openpose/openpose.bin --video $root2$v --write_json '/content/temp/frameFor_{v}/' --display 0 --render_pose 0
   root3='/content/temp/frameFor_{}/'.format(v)
   ls=os.listdir(root3)

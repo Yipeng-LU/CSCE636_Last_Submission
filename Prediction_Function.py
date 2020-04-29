@@ -9,6 +9,7 @@ import getopt, sys
 
 opts, args = getopt.getopt(sys.argv[1:], "ho:", ["video_name"])
 root=args[0]
+print(root)
 if not os.path.exists('/content/temp'):
     os.makedirs('/content/temp')
 l1=len(root)
@@ -85,5 +86,7 @@ plt.ylabel('prob of stretching body')
 plt.title('prediction for every 2s')
 plt.legend()
 plt.savefig('timeLabel.jpg')
+os.system('rm -rf /content/CSCE636_Last_Submission')
+os.system('rm -rf /content/temp')
 plt.show()
 

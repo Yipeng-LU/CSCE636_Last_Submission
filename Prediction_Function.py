@@ -21,7 +21,7 @@ for i in range(l1-1,-1,-1):
 name=root[i+1:j+1]
 name=name[:-4]
 root=root[:j+1]
-os.mkdir '/content/temp/videoTempFor_{name}/'
+os.mkdir('/content/temp/videoTempFor_{}/'.format(name))
 root2='/content/temp/videoTempFor_{}/'.format(name)
 video = mp.VideoFileClip(root)
 width,height=video.size

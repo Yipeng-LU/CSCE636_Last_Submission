@@ -26,16 +26,17 @@ def predAndPlot(root):
   l=video.duration
   i=0
   j=2
+  k=0
   while i+j<=l:
     v=video.subclip(i,i+j)
-    k=int(i/j)
     if k<10:
       v.write_videofile(root2+"{}-00{}.mp4".format(name,k),fps=10,audio=False)
     elif k<100:
       v.write_videofile(root2+"{}-0{}.mp4".format(name,k),fps=10,audio=False)
     else:
       v.write_videofile(root2+"{}-{}.mp4".format(name,k),fps=10,audio=False)
-    i+=j
+    i+=0.5
+    k+=1
   names=os.listdir(root2)
   names.sort()
   inp=np.ndarray((len(names),20,50), dtype='float32')
@@ -59,16 +60,16 @@ def predAndPlot(root):
         inp[i,j,:]=ls2
       else:
         inp[i,j,:]=[0]*50
-  model=load_model('/content/new_model20.h5')
+  model=load_model('new_model20.h5')
   result=model.predict(inp)
   x=[]
   data=[]
   for i in range(len(result)):
-    x.append(2*(i+1))
-    data.append([2*(i+1),str(result[i][0])])
+    x.append(0.5*(i+1))
+    data.append([0.5*(i+1),str(result[i][0])])
   jsontext = {'stretch body':data}
   jsondata = json.dumps(jsontext)
-  f = open('/content/829009541.json'.format(name), 'w')
+  f = open('/content/results/{}.json'.format(name), 'w')
   f.write(jsondata)
   f.close()
   if len(names)==1:
@@ -81,6 +82,5 @@ def predAndPlot(root):
   plt.ylabel('prob of stretching body')
   plt.title('prediction for every 2s')
   plt.legend()
-  plt.savefig('/content/829009541.jpg')
+  plt.savefig('/content/results/{}.jpg'.format(name))
   plt.show()
-
